@@ -17,7 +17,7 @@ case $input in
 esac
 
 #目标平台
-export WRT_TARGET=IPQ60XX-WIFI-YES
+export WRT_TARGET=JDC-ONLY
 #默认主题
 export WRT_THEME=argon
 #默认主机名
@@ -45,7 +45,7 @@ export WRT_CI=$(basename $GITHUB_WORKSPACE)
 export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
 export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)
 export SRC_DIR=$GITHUB_WORKSPACE/openwrt
-export RELEASE_DIR="$SRC_DIR"/"$WRT_DATE"
+export RELEASE_DIR="$SRC_DIR"/release/"$WRT_DATE"
 
 echo -e "\n=================================================================================="
 lscpu | grep -E "name|Core|Thread"
