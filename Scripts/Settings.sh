@@ -53,3 +53,31 @@ else
 	echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 	echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
 fi
+
+#修改菜单
+sed -i 's/"UPnP IGD & PCP\/NAT-PMP"/"UPnP"/g' $(find ./feeds/luci/applications/luci-app-upnp/ -type f -name "luci-app-upnp.json")
+
+#添加初始运行脚本
+mkdir -p files/etc/uci-defaults && cat << "EOF" > files/etc/uci-defaults/99-init-settings
+#!/bin/bash
+
+# Change source feeds
+sed -i "s/^[^#].*qualcommax\/ipq60xx.*/#&/g" /etc/opkg/distfeeds.conf
+sed -i "/nss_packages/d;/sqm_scripts_nss/d" /etc/opkg/distfeeds.conf
+
+# Set default theme to luci-theme-argon
+uci set luci.main.mediaurlbase='/luci-static/argon'
+uci commit luci
+
+# Disable IPV6 ula prefix
+#sed -i 's/^[^#].*option ula/#&/' /etc/config/network
+#uci set network.globals.ula_prefix=''
+#uci commit network
+
+# Enable flow offloading
+#uci set firewall.@defaults[0].flow_offloading=1
+#uci set firewall.@defaults[0].flow_offloading_hw=1
+#uci commit firewall
+
+exit 0
+EOF
