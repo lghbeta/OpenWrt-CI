@@ -44,7 +44,8 @@ export WRT_DATE=$(TZ=UTC-8 date +"%y%m%d_%H%M")
 export WRT_CI=$(basename $GITHUB_WORKSPACE)
 export WRT_VER=$(echo $WRT_REPO | cut -d '/' -f 5-)-$WRT_BRANCH
 export WRT_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt)
-export SRC_DIR=$GITHUB_WORKSPACE/openwrt
+
+export SRC_DIR=$GITHUB_WORKSPACE/wrt
 export RELEASE_DIR="$SRC_DIR"/release/"$WRT_DATE"
 
 echo -e "\n=================================================================================="
