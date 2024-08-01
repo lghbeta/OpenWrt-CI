@@ -17,7 +17,7 @@ case $input in
 esac
 
 #目标平台
-export WRT_TARGET=JDC-ONLY
+export WRT_TARGET=JDC
 #默认主题
 export WRT_THEME=argon
 #默认主机名
@@ -113,7 +113,7 @@ if [[ $WRT_TEST != 'true' ]]; then
 fi
 
 #发布
-cd $SRC_DIR && mkdir $RELEASE_DIR
+cd $SRC_DIR && mkdir -p $RELEASE_DIR
 cp -f ./.config "$RELEASE_DIR"/Config_"$WRT_TARGET"_"$WRT_VER"_"$WRT_DATE".txt
 
 if [[ $WRT_TEST != 'true' ]]; then
