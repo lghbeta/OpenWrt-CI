@@ -17,7 +17,7 @@ case $input in
 esac
 
 #目标平台
-export WRT_TARGET=JDC
+export WRT_TARGET=IPQ-JDC
 #默认主题
 export WRT_THEME=argon
 #默认主机名
@@ -117,8 +117,8 @@ cd $SRC_DIR && mkdir -p $RELEASE_DIR
 cp -f ./.config "$RELEASE_DIR"/Config_"$WRT_TARGET"_"$WRT_VER"_"$WRT_DATE".txt
 
 if [[ $WRT_TEST != 'true' ]]; then
-    echo -e "\n>>> Release firmware...\n"
-    find ./bin/targets/ -iregex ".*\(buildinfo\|json\|manifest\|sha256sums\|packages\)$" -exec rm -rf {} +
+    echo -e "\n>>> Release firmware to $RELEASE_DIR...\n"
+    find ./bin/targets/ -iregex ".*\(packages\)$" -exec rm -rf {} +
 
     for TYPE in $WRT_TYPE ; do
         for FILE in $(find ./bin/targets/ -type f -iname "*$TYPE*.*") ; do
@@ -131,3 +131,4 @@ if [[ $WRT_TEST != 'true' ]]; then
 
     find ./bin/targets/ -type f -exec mv -f {} "$RELEASE_DIR"/ \;
 fi
+
