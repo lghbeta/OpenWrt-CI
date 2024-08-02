@@ -9,6 +9,7 @@ UPDATE_PACKAGE() {
 	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
 	rm -rf $(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
+	rm -rf "$PKG_NAME/" "$REPO_NAME/" #删除旧包
 
 	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
 
