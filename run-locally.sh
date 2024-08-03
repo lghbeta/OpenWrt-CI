@@ -66,9 +66,15 @@ if [ "$(ls -A $SRC_DIR)" = "" ] || [ ! -d "$SRC_DIR" ]; then
     git clone --depth=1 --single-branch --branch $WRT_BRANCH $WRT_REPO $SRC_DIR
 fi
 
+#源码清理重置
 cd $SRC_DIR
-git fetch --all && git reset --hard && git pull --force
+git fetch --all && git reset --hard HEAD && git pull --force
 export WRT_HASH=$(git log -1 --pretty=format:'%h')
+
+if [ -d "$SRC_DIR"/feeds/luci ]; then
+    cd "$SRC_DIR"/feeds/luci
+    git fetch --all && git reset --hard HEAD && git pull --force
+fi
 
 #执行脚本
 echo -e "\n>>> Apply patches...\n"
