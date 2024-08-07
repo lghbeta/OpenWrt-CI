@@ -53,10 +53,10 @@ else
 	echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 #	echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
 
-    echo "CONFIG_PACKAGE_luci-app-passwall=y" >> ./.config
-    echo "CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=n" >> ./.config
-    echo "CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Server=n" >> ./.config
-    echo "CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Geodata=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-passwall=y" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=n" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Server=n" >> ./.config
+	echo "CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray_Geodata=y" >> ./.config
 fi
 
 #修改菜单
