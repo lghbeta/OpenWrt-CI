@@ -79,7 +79,8 @@ fi
 #执行脚本
 echo -e "\n>>> Apply patches...\n"
 cd $GITHUB_WORKSPACE
-find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
+#转换行符&增加可执行权限
+#find ./ -maxdepth 3 -type f -iregex ".*\(txt\|sh\)$" -exec dos2unix {} \; -exec chmod +x {} \;
 if [ -f "$GITHUB_WORKSPACE/Patches/Patches.sh" ]; then
     $GITHUB_WORKSPACE/Patches/Patches.sh
 else
